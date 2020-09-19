@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div style="float:right;">
+    <a href="/register"><button type="button" class="btn btn-success">Criar Conta</button></a>
+</div>
+<form class="form-login" action="/login" method="POST">
+    <div class="text-center">
+        <img class="mb-4" src="/static/logo.png" alt="Logo" height="200">
+        <h1 class="h3 mb-3">Iniciar Sessão</h1>
+    </div>
+    <input type="text" name="email" class="form-control" placeholder="Email" value=""><br>
+    <input type="password" name="password" class="form-control" placeholder="Password" value=""><br>
+    <button type="submit" class="btn btn-primary btn-block">Iniciar Sessão</button>
+</form>
+{% endblock %}

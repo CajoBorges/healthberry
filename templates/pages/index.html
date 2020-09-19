@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+<a href="/logout"><button type="button" class="btn btn-danger" style="float:right;">Terminar Sessão</button></a>
+<br>
+<h1>Hello, {% if user %}{{ user.name }}{% else %}World{% endif %}!</h1>
+{% endblock %}
