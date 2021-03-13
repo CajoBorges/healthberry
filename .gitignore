@@ -113,3 +113,5 @@ env.bak/
 venv.bak/
 pip-selfcheck.json
 
+
+healthberry.db
