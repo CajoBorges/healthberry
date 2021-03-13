@@ -3,17 +3,17 @@
 {% block title %}Registo{% endblock %}
 
 {% block content %}
-<div style="float:right;">
-    <a href="/login"><button type="button" class="btn btn-primary" style="float:right;">Iniciar Sessão</button></a>
-</div>
+
 <form class="form-login" action="/register" method="POST">
     <div class="text-center">
         <img class="mb-4" src="/static/logo.png" alt="Logo" height="200">
-        <h1 class="h3 mb-3">Registo</h1>
+        <h1 class="h3 mb-3"><b>Registo</b></h1>
     </div>
     <input type="text" name="name" class="form-control" placeholder="Nome" value=""><br>
     <input type="text" name="email" class="form-control" placeholder="Email" value=""><br>
     <input type="password" name="password" class="form-control" placeholder="Password" value=""><br>
     <button type="submit" class="btn btn-success btn-block">Criar conta</button>
+    <p class="text-center">Já tem conta? <a href="/login"><button type="button" class="btn btn-link">Iniciar
+                Sessão</button></a></p>
 </form>
 {% endblock %}

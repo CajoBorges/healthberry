@@ -24,7 +24,7 @@ def index():
     if not "user" in session:
         return redirect(url_for('login'))
 
-    return render_template("pages/index.html", user=session["user"])
+    return render_template("pages/index.html")
 
 
 @app.route('/register', methods=['GET', 'POST'])

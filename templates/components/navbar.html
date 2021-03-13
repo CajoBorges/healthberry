@@ -1,0 +1,34 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="/">
+    <img src="/static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    HealthBerry
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sobre</a>
+      </li>
+    </ul>
+
+    <div>
+      {% if not session['user'] %}
+      <a href="/login"><button class="btn btn-primary">Login</button></a>
+      <a href="/register"><button class="btn btn-success">Sign In</button></a>
+      {% else %}
+      <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+      {% endif %}
+    </div>
+
+  </div>
+</nav>
