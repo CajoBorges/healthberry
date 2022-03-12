@@ -47,7 +47,17 @@ def index():
 @app.route("/dashboard")
 def dashboard():
 
+<<<<<<< Updated upstream
     return render_template("pages/dashboard.html")
+=======
+    return render_template("dashboard.html")
+
+
+@app.route("/dashboard/blood-pressure")
+def bloodPressure():
+
+    return render_template("tensao_arterial.html")
+>>>>>>> Stashed changes
 
 
 @app.route('/register', methods=['GET', 'POST'])
