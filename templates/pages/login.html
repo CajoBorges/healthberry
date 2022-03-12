@@ -6,6 +6,14 @@
 
 <form class="form-login" action="/login" method="POST">
     <div class="text-center">
+        <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body">
+                <b>Credencias Erradas ou Utilizador não existente</b>
+                <div class="mt-2 pt-2 border-top">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                </div>
+            </div>
+        </div>
         <img class="mb-4" src="/static/logo.png" alt="Logo" height="200">
         <h1 class="h3 mb-3"><b>Iniciar Sessão</b></h1>
     </div>
@@ -14,5 +22,6 @@
     <button type="submit" class="btn btn-primary btn-block">Iniciar Sessão</button>
     <p class="text-center">Ainda não tem conta? <a href="/register"><button type="button"
                 class="btn btn-link">Registe-se</button></a></p>
-</form>
-{% endblock %}
+
+
+    {% endblock %}

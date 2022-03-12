@@ -1,13 +1,18 @@
+import database
 from flask import Flask, render_template, session, redirect, request, url_for, logging, flash, abort
+
 
 from models import User
 
 import re
 import sqlite3
+import smtplib
+import ssl
+import email_verificacao
 
-#conn = sqlite3.connect('healthberry.db')
-#c = conn.cursor()
-#c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+#! conn = sqlite3.connect('healthberry.db')
+#! c = conn.cursor()
+#! c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
 
 
 app = Flask(__name__)
@@ -39,6 +44,12 @@ def index():
     return render_template("pages/index.html")
 
 
+@app.route("/dashboard")
+def dashboard():
+
+    return render_template("pages/dashboard.html")
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     conn = sqlite3.connect('healthberry.db')
@@ -55,12 +66,15 @@ def register():
         if email in users:
             # TODO: create error page <https://stackoverflow.com/a/21301229/8222710> - feito
             abort(400)
-
+        conn.commit()
         # TODO: verify if password is strong
-
+        c.close()
         new_user = User(name, email, password)
+        conn = sqlite3.connect('healthberry.db')
+        c = conn.cursor()
 
         # TODO: add email validation
+
         c.execute('INSERT INTO users(name, email, password) VALUES (?,?, ?)',
                   (name, email, password))
         conn.commit()
@@ -73,9 +87,10 @@ def register():
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
-    conn = sqlite3.connect('healthberry.db')
-    c = conn.cursor()
+
     if request.method == 'POST':
+        conn = sqlite3.connect('healthberry.db')
+        c = conn.cursor()
         email = request.form['email']
         password = request.form['password']
         c.execute("SELECT * FROM users WHERE email=?", (email,))
@@ -83,11 +98,16 @@ def login():
         user = c.fetchone()
         c.close()
         print(user)
-        if password == user[2]:
-            session["user"] = user.__dict__
-        return redirect(url_for('index'))
+        if password == user[3]:
+            session["user"] = {"email": user[2], "name": user[1]}
+            return redirect(url_for('index'))
+        else:
+            # TODO: Alterar para chamar notificação
+            print('''<script> alert(Password Errada  %s ')
+                   </script> ''' % ())
+            return redirect(url_for('login'))
 
-    return render_template("pages/index.html")
+    return render_template("pages/login.html")
 
 
 if __name__ == "__main__":
