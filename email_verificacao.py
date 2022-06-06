@@ -1,3 +1,4 @@
+from flask import Flask, render_template, session, redirect, request, url_for, logging, flash, abort
 import smtplib
 import ssl
 from email.mime.text import MIMEText
@@ -13,7 +14,7 @@ def email_verificacao():
     port = 587  # For starttls
     sender_email = "healthberry1@gmail.com"
     receiver_email = "cjvborges@yahoo.com"
-    password = "healthberry111&"
+    password = EMAIL_PASSWORD
     subject = "Hello"
     # Create the plain-text and HTML version of your message
     message = """\
