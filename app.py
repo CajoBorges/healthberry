@@ -14,7 +14,9 @@ import email_verificacao
 #! c = conn.cursor()
 #! c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
 
-# servidor com raspberry
+
+# TODO: servidor com raspberry
+# TODO: Filtrar users de teste
 
 app = Flask(__name__)
 app.config.from_pyfile("settings.py")
