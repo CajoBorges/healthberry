@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %} | HealthBerry</title>
     <link rel="shortcut icon" href="/static/logo.png" />
-    <link rel="stylesheet" href="{{url_for('static',filename='static/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+    <link rel="stylesheet" href="/static/style_dashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=PT+Mono&display=swap"
+        rel="stylesheet">
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -14,114 +20,137 @@
   <link rel="stylesheet" href="/static/main.css" />
   <link rel="stylesheet" href="{{url_for('static',filename='static/main.css')}}">-->
 </head>
+<style>
+    body {
+        background-color: white;
+    }
+</style>
 
 <body>
 
-    <header>
+    <header id="dashboard">
 
         <!-- This example requires Tailwind CSS v2.0+ -->
 
-        <div class="flex-1 flex flex-col min-h-0 bg-indigo-700">
+        <div class="flex-1 flex flex-col min-h-0 bg-indigo-700" id="dashboard">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                <div class="flex items-center flex-shrink-0 px-4">
-                    <img class="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                        alt="Workflow">
+                <div class="flex items-center flex-shrink-0 px-4" style="color: white; font-family: 'Comic Neue';">
+                    <img class="h-8 w-auto" src="static\logo.png" alt="HealthBerry"><span
+                        style="padding-left: 10px; font-size: 20px; padding-bottom: 2px;">HealthBerry</span>
                 </div>
                 <nav class="mt-5 flex-1 px-2 space-y-1" aria-label="Sidebar">
                     <!-- Current: "bg-indigo-800 text-white", Default: "text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75" -->
-                    <a href="#"
-                        class="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block home %}<a href="/dashboard"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/home -->
                         <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            fill="#007AFE" stroke="#007AFE" viewBox="0 0 17 17" aria-hidden="true">
+                            <path
+                                d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
                         </svg>
                         <span class="flex-1">
-                            Dashboard
+                            Home
                         </span>
                     </a>
 
-                    <a href="#"
-                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block ta %}<a href="/tensao-arterial"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/users -->
+                        <!-- stroke="currentColor"-->
                         <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            fill="none" viewBox="0 0 24 24" aria-hidden="true" stroke="#128000">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M8.625 2.5C8.77271 2.50005 8.91682 2.53968 9.03771 2.61349C9.1586 2.6873 9.2504 2.79171 9.30062 2.9125L14.375 15.045L16.5744 9.785C16.6251 9.66467 16.7171 9.5608 16.8379 9.48747C16.9588 9.41413 17.1026 9.37487 17.25 9.375H22.2812C22.4719 9.375 22.6547 9.44085 22.7895 9.55806C22.9243 9.67527 23 9.83424 23 10C23 10.1658 22.9243 10.3247 22.7895 10.4419C22.6547 10.5592 22.4719 10.625 22.2812 10.625H17.7531L15.0506 17.0875C15.0003 17.2082 14.9084 17.3124 14.7875 17.3861C14.6666 17.4597 14.5226 17.4993 14.375 17.4993C14.2274 17.4993 14.0834 17.4597 13.9625 17.3861C13.8416 17.3124 13.7497 17.2082 13.6994 17.0875L8.625 4.955L6.42562 10.2137C6.37517 10.3343 6.28326 10.4384 6.16239 10.512C6.04152 10.5856 5.89754 10.625 5.75 10.625H0.71875C0.528126 10.625 0.345309 10.5592 0.210517 10.4419C0.0757252 10.3247 0 10.1658 0 10C0 9.83424 0.0757252 9.67527 0.210517 9.55806C0.345309 9.44085 0.528126 9.375 0.71875 9.375H5.24688L7.94938 2.9125C7.9996 2.79171 8.0914 2.6873 8.21229 2.61349C8.33318 2.53968 8.47729 2.50005 8.625 2.5Z"
+                                fill="#128000" />
                         </svg>
                         <span class="flex-1">
-                            Team
+                            Tensão arterial
                         </span>
 
                         <!-- Current: "bg-indigo-600", Default: "bg-indigo-800" -->
-                        <span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                        <!-- <span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
                             3
-                        </span>
+                        </span> -->
                     </a>
 
-                    <a href="#"
-                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block rc %}<a href="/ritmo-cardiaco"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/folder -->
-                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        <svg class="mr-3 pt-1 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
+                            fill="#BB0D0D" viewBox="0 0 18 18" stroke="#BB0D0D" aria-hidden="true">
+                            <path
+                                d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                         </svg>
                         <span class="flex-1">
-                            Projects
+                            Ritmo Cardíaco
                         </span>
 
-                        <span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                        <!--<span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
                             4
-                        </span>
+                        </span>-->
                     </a>
 
-                    <a href="#"
-                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block kp %}<a href="/km-passos"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/calendar -->
                         <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect width="23" height="20" fill="url(#pattern0)" />
+                            <defs>
+                                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                    <use xlink:href="#image0_4_126"
+                                        transform="translate(0 -0.075) scale(0.00423729 0.00487288)" />
+                                </pattern>
+                                <image id="image0_4_126" width="236" height="236"
+                                    xlink:href="data:image/png;base64,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" />
+                            </defs>
                         </svg>
                         <span class="flex-1">
-                            Calendar
+                            KM/Passos
                         </span>
                     </a>
 
-                    <a href="#"
-                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block sono %}<a href="/sono"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/inbox -->
-                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                        <svg class="pl-1 pt-1 mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 26 26" aria-hidden="true">
+                            <path
+                                d="M8.625 0.347751C8.76532 0.496017 8.85128 0.677466 8.87178 0.868654C8.89228 1.05984 8.84638 1.25198 8.74 1.42025C7.90892 2.74709 7.47491 4.23437 7.47788 5.74525C7.47788 10.7715 12.19 14.8415 17.9975 14.8415C18.7551 14.8415 19.4925 14.7727 20.2012 14.6415C20.4184 14.6006 20.6447 14.6162 20.8518 14.6865C21.0589 14.7567 21.2376 14.8785 21.3656 15.0365C21.5007 15.2008 21.5696 15.3993 21.5615 15.6012C21.5534 15.8031 21.4689 15.997 21.321 16.1527C20.1935 17.357 18.7712 18.3274 17.1578 18.993C15.5443 19.6586 13.7803 20.0027 11.9945 20.0002C5.36762 20.0002 0 15.3577 0 9.63775C0 5.33275 3.03888 1.64025 7.36575 0.075251C7.58129 -0.00395913 7.82056 -0.0202167 8.04763 0.0289206C8.2747 0.0780579 8.4773 0.189937 8.625 0.347751Z"
+                                fill="#DC25B4" />
                         </svg>
                         <span class="flex-1">
-                            Documents
+                            Sono
                         </span>
 
-                        <span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
+                        <!-- <span class="bg-indigo-800 ml-3 inline-block py-0.5 px-3 text-xs font-medium rounded-full">
                             12
-                        </span>
+                        </span>-->
                     </a>
 
-                    <a href="#"
-                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                    {% block ap %}<a href="/altura-peso"
+                        class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">{%
+                        endblock %}
                         <!-- Heroicon name: outline/chart-bar -->
-                        <svg class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        <svg class="mr-3 pl-1 flex-shrink-0 h-6 w-6 text-indigo-300" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 30 30" aria-hidden="true">
+                            <path
+                                d="M1.4375 0C1.05625 0 0.690618 0.131696 0.421034 0.366117C0.15145 0.600537 0 0.918479 0 1.25L0 18.75C0 19.0815 0.15145 19.3995 0.421034 19.6339C0.690618 19.8683 1.05625 20 1.4375 20H8.625V18.75H2.875V17.5H8.625V16.25H5.75V15H8.625V13.75H2.875V12.5H8.625V11.25H5.75V10H8.625V8.75H2.875V7.5H8.625V2.5H10.0625V7.5H11.5V5H12.9375V7.5H14.375V2.5H15.8125V7.5H17.25V5H18.6875V7.5H20.125V2.5H21.5625V7.5H23V1.25C23 0.918479 22.8485 0.600537 22.579 0.366117C22.3094 0.131696 21.9437 0 21.5625 0L1.4375 0Z"
+                                fill="#FE7A00" />
                         </svg>
                         <span class="flex-1">
-                            Reports
+                            Altura e Peso
                         </span>
                     </a>
                 </nav>
+
             </div>
+
             <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
                 <a href="#" class="flex-shrink-0 w-full group block">
                     <div class="flex items-center">
@@ -140,6 +169,11 @@
                         </div>
                     </div>
                 </a>
+            </div>
+            <div style="width: 100%; justify-content: center; height: 6%">
+                <a href="/logout"><button style="width: 100%; justify-content: center; height: 100%" type="button"
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Log
+                        Out</button></a>
             </div>
         </div>
 

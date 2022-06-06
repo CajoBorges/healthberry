@@ -1,0 +1,28 @@
+html,
+body {
+  height: 80%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 200px;
+  padding-bottom: 10px;
+  background-color: rgb(255, 212, 93);
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.navbar {
+  background-color: rgb(255, 212, 93);
+  align-items: top;
+}
+
+.form-login{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}

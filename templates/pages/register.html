@@ -3,7 +3,13 @@
 {% block title %}Registo{% endblock %}
 
 {% block content %}
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<script> alert('{{message}}')</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <form class="form-login" action="/register" method="POST">
     <div class="text-center">
         <img class="mb-4" src="/static/logo.png" alt="Logo" height="200">

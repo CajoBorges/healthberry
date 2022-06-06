@@ -2,8 +2,15 @@
 
 {% block title %}Login{% endblock %}
 
-{% block content %}
 
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<script> alert('{{message}}')</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
 <form class="form-login" action="/login" method="POST">
     <div class="text-center">
         <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
