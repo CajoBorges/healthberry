@@ -1,10 +1,23 @@
-from flask import Flask, render_template, session, redirect, request, url_for, logging, flash, abort
 import smtplib
 import ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from email import encoders
 from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from flask import (
+    Flask,
+    abort,
+    flash,
+    logging,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
+
+from settings import EMAIL_PASSWORD
 
 
 def email_verificacao():
